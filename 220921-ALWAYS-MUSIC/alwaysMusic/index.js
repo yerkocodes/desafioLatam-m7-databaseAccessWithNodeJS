@@ -1,7 +1,12 @@
 require('dotenv').config();
 
 const { Client } = require('pg');
-//console.log(Client);
+
+const addStudent = require('./modules/addStudent');
+const deleteStudent = require('./modules/deleteStudent');
+const getStudentBtRut = require('./modules/getStudentByRut');
+const getStudents = require('./modules/getStudents');
+const updateStudent = require('./modules/updateStudent');
 
 const {
   USER_DB,
@@ -18,4 +23,5 @@ const config = {
   password: PASSWORD,
   port: PORT,
 };
-console.log(config);
+
+const client = new Client(config);
