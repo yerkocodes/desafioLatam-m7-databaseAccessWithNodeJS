@@ -12,6 +12,7 @@ pool.connect( async (err_connect, client, release) => {
 
   /* 2. Realizar una función asíncrona que consulte la tabla de transacciones y retorne
   máximo 10 registros de una cuenta en específico. Debes usar cursores para esto. */
+  /* # node index.js consulta nombre_tabla */
   if (argumentos[0] == 'consulta') {
 
     const consulta = new Cursor(`SELECT * FROM ${argumentos[1]};`);
@@ -27,6 +28,7 @@ pool.connect( async (err_connect, client, release) => {
     /* 1. Crear una función asíncrona que registre una nueva transacción utilizando valores
       * ingresados como argumentos en la línea de comando. Debe mostrar por consola la
       * última transacción realizada.*/
+  /* # node index.js nuevaTransaccion IDcuentaOrigen IDcuentaDestino cantidadTransferir */
   } if ( argumentos[0] == 'nuevaTransaccion' ) {
     try {
       await client.query("BEGIN");
@@ -59,6 +61,10 @@ pool.connect( async (err_connect, client, release) => {
       console.log(err);
     };
 
+    /* 3. Realizar una función asíncrona que consulte el saldo de una cuenta y que sea
+ejecutada con valores ingresados como argumentos en la línea de comando. Debes
+usar cursores para esto. */
+    /* # node index.js consultaSaldo IDnumeroCuenta */
   } if ( argumentos[0] == 'consultaSaldo' ) {
     try{
 
