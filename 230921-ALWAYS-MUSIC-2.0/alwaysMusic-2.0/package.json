@@ -1,0 +1,26 @@
+{
+  "name": "alwaysmusic",
+  "version": "1.0.0",
+  "description": "Desafio \"Always Music\" 220921.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS.git"
+  },
+  "author": "Yerko Cortes Baeza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS/issues"
+  },
+  "homepage": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS#readme",
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13",
+    "pg": "^8.7.1",
+    "yargs": "^17.2.1"
+  }
+}
