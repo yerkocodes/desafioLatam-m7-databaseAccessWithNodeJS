@@ -1,0 +1,19 @@
+{
+  "name": "bancosolar",
+  "version": "1.0.0",
+  "description": "Desarrollo Prueba Banco Solar Desafio Latam.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS.git"
+  },
+  "author": "Yerko Cortes Baeza",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS/issues"
+  },
+  "homepage": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS#readme"
+}
