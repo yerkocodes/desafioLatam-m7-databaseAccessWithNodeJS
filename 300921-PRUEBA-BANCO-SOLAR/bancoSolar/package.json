@@ -4,7 +4,8 @@
   "description": "Desarrollo Prueba Banco Solar Desafio Latam.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start:dev": "nodemon index.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS/issues"
   },
-  "homepage": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS#readme"
+  "homepage": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS#readme",
+  "dependencies": {
+    "nodemon": "^2.0.13"
+  }
 }
