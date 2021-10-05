@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/yerkodigo/desafioLatam-m7-databaseAccessWithNodeJS#readme",
   "dependencies": {
-    "nodemon": "^2.0.13"
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.13",
+    "pg": "^8.7.1"
   }
 }
