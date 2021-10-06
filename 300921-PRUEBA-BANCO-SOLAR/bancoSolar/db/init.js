@@ -1,12 +1,12 @@
-//require('dotenv').config();
-//const { Pool } = require('pg');
+require('dotenv').config();
+const { Pool } = require('pg');
 
 const {
   USER_DB,
   HOST,
   DATABASE,
   PASSWORD,
-  PORT,
+  PORT_DB,
   MAX,
   MIN,
   IDLETIMEOUTMILLIS,
@@ -14,44 +14,41 @@ const {
 } = process.env;
 
 const config = {
-  user_db:USER_DB,
+  user:USER_DB,
   host:HOST,
   database:DATABASE,
   password:PASSWORD,
-  port:PORT,
+  port:PORT_DB,
   max:MAX,
   min:MIN,
   idleTimeOutMillis:IDLETIMEOUTMILLIS,
   connectionTimeOutMillis:CONNECTIONTIMEOUTMILLIS,
 };
 
-//const pool = new Pool(config);
-module.exports = config;
-////console.log(config)
+//module.exports = config;
+
+//console.log(config)
 ////console.log(process.env)
 
 //// Singleton --------------------------------------
-////class CustomPool {
-  ////constructor() {
-    ////if ( !CustomPool.instance ) {
-      ////CustomPool.instace = this;
-    ////};
-    ////return CustomPool.instace;
-  ////};
+class CustomPool {
+  constructor() {
+    if ( !CustomPool.instance ) {
+      CustomPool.instace = this;
+    };
+    return CustomPool.instace;
+  };
 
-  ////getPoolInstance() {
-    ////if ( !CustomPool.poolInstance ) {
-      ////CustomPool.poolInstance = new Pool(config);
-    ////};
-    ////return CustomPool.poolInstance;
-  ////};
-////};
+  getPoolInstance() {
+    if ( !CustomPool.poolInstance ) {
+      CustomPool.poolInstance = new Pool(config);
+    };
+    return CustomPool.poolInstance;
+  };
+};
 
-////const instance = new CustomPool();
+const instance = new CustomPool();
 
-////Object.freeze(instance);
+Object.freeze(instance);
 
-////module.exports = {
-  ////instance,
-  ////config,
-////};
+module.exports = instance;
