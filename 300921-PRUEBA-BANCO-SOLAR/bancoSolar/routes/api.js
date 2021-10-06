@@ -1,19 +1,16 @@
 const usuario = require('../routes/usuario');
-const usuarios = require('../routes/usuarios');
 const transferencia = require('../routes/transferencia');
-const transferencias = require('../routes/transferencias');
 
 module.exports = {
-
   routeApi: ( req, res ) => {
-    const { url } = req;
+    const { url, method } = req;
 
     if ( url.startsWith('/usuario') ) {
       usuario.routes(req, res);
     };
 
     if ( url.startsWith('/usuarios') ) {
-      usuarios.routes(req, res);
+      usuario.routes(req, res);
     };
 
     if ( url.startsWith('/transferencia') ) {
@@ -21,10 +18,8 @@ module.exports = {
     };
 
     if ( url.startsWith('/transferencias') ) {
-      transferencias.routes(req, res);
+      transferencia.routes(req, res);
     };
 
-
   }
-
 };

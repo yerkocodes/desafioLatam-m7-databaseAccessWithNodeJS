@@ -1,4 +1,5 @@
-const { Pool } = require('pg');
+//require('dotenv').config();
+//const { Pool } = require('pg');
 
 const {
   USER_DB,
@@ -24,25 +25,33 @@ const config = {
   connectionTimeOutMillis:CONNECTIONTIMEOUTMILLIS,
 };
 
-// Singleton --------------------------------------
-class CustomPool {
-  constructor() {
-    if ( !CustomPool.instance ) {
-      CustomPool.instace = this;
-    };
-    return CustomPool.instace;
-  };
+//const pool = new Pool(config);
+module.exports = config;
+////console.log(config)
+////console.log(process.env)
 
-  getPoolInstance() {
-    if ( !CustomPool.poolInstance ) {
-      CustomPool.poolInstance = new Pool(config);
-    };
-    return CustomPool.poolInstance;
-  };
-};
+//// Singleton --------------------------------------
+////class CustomPool {
+  ////constructor() {
+    ////if ( !CustomPool.instance ) {
+      ////CustomPool.instace = this;
+    ////};
+    ////return CustomPool.instace;
+  ////};
 
-const instance = new CustomPool();
+  ////getPoolInstance() {
+    ////if ( !CustomPool.poolInstance ) {
+      ////CustomPool.poolInstance = new Pool(config);
+    ////};
+    ////return CustomPool.poolInstance;
+  ////};
+////};
 
-Object.freeze(instance);
+////const instance = new CustomPool();
 
-module.exports = instance;
+////Object.freeze(instance);
+
+////module.exports = {
+  ////instance,
+  ////config,
+////};
