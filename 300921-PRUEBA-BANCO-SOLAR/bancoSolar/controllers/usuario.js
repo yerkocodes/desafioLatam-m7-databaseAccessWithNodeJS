@@ -69,9 +69,42 @@ module.exports = {
 
   },
 
-  //putUser: (req, res) => {
+  putUser: (req, res) => {
+    
+    pool.connect( async (err_connect, client, release) => {
+       console.log('Metodo: "PUT". Ingresando modificar un usuario.');
+      
+      let body = "";
 
-  //},
+      req.on('data', (data) => {
+        //body += data;
+        body = JSON.parse(data);
+      });
+
+      req.on('end', async () => {
+
+        const SQLQuery = {
+          text: 'update usuarios set nombre = $1, balance = $2 where id = $3 returning *',
+          values: [ body.name, body.balance, URL.parse(req.url, true).query.id ],
+        };
+
+        try {
+          const response = await client.query(SQLQuery);
+          res.end(JSON.stringify(response));
+          console.log('Usuario modificado: ' + JSON.stringify(response.rows));
+        } catch ( err ) {
+          console.log(err.message);
+        } finally {
+          release();
+          //client.end();
+          //pool.end();
+        };
+      
+      });
+     
+    });
+
+  },
 
   deleteUser: (req, res) => {
 

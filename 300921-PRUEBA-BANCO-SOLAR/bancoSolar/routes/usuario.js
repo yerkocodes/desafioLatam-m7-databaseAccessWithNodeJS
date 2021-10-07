@@ -15,5 +15,9 @@ module.exports = {
     if ( method === 'POST' ) {
       controladorUsuario.postUser(req, res);
     };
+
+    if ( method === 'PUT' ) {
+      controladorUsuario.putUser(req, res)
+    };
   }
 };
