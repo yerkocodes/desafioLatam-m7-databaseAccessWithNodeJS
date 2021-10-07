@@ -11,5 +11,9 @@ module.exports = {
     if ( method === 'DELETE' ) {
       controladorUsuario.deleteUser(req, res);
     };
+
+    if ( method === 'POST' ) {
+      controladorUsuario.postUser(req, res);
+    };
   }
 };
