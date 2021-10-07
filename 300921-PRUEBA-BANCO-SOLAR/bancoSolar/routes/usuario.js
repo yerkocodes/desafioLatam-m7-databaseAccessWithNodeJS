@@ -7,5 +7,9 @@ module.exports = {
     if ( method === 'GET' ) {
       controladorUsuario.getUsers(req, res);
     };
+
+    if ( method === 'DELETE' ) {
+      controladorUsuario.deleteUser(req, res);
+    };
   }
 };
