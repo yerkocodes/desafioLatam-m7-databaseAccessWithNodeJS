@@ -44,6 +44,7 @@ module.exports = {
         //console.log('Hola probando desde req.on body: ' + data)
 
         const SQLQuery = {
+          rowMode: 'array',
           text: 'insert into repertorio (cancion, artista, tono) values ($1, $2, $3) returning *',
           values: [ body.cancion, body.artista, body.tono ],
         };
@@ -62,31 +63,47 @@ module.exports = {
     });
   },
 
-  putSong: ( req, res ) => {
+  putSong: ( req, res ) => { // Se debio agregar el 'id' a la funcion editarCancion() del frontEnd
     pool.connect( async (err_connect, client, release) => {
+
+      console.log('Entrando en putSong');
+
       if ( err_connect ) {
         console.log(err_connect);
       };
 
+      //const urlQuery = URL.parse(req.url, true).query.id;
+      //console.log(req.url)
+      //console.log(urlQuery)
+
       let body = "";
-      req.on('data', (data) => {
+      req.on('data', async (data) => { // req.on
         body = JSON.parse(data);
-      });
+        console.log('Mostrando data desde req.on ' + data);
+
+      console.log('---------------')
+      console.log(body)
+      console.log('---------------')
 
       const SQLQuery = {
-        text: 'update repertorio set cancion = $1, artista = $2, tono = $3 where id = $4 retunrning *',
-        values: [ body.cancion, body.artista, body.tono, URL.parse(req.url, true).query.id ],
+        //rowMode: 'array',
+        text: 'update repertorio set cancion = $1, artista = $2, tono = $3 where id = $4 returning *',
+        values: [ body.cancion, body.artista, body.tono, body.id ],
       };
 
       try {
-        const resonse = await client.query(SQLQuery);
+        const response = await client.query(SQLQuery);
+        console.log(response.rows)
         res.end(JSON.stringify(response));
-        console.log('Cancion modificada con éxito: ' + JSON.stringify(response.rows));
+        console.log('Canción modificada con éxito: ' + JSON.stringify(response.rows));
       } catch ( err ) {
         console.log(err.message);
       } finally {
         release();
       };
+
+      }); // req.on end
+
     });
   },
 
