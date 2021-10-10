@@ -4,12 +4,12 @@ module.exports = {
   routeApi: ( req, res ) => {
     const { url, method } = req;
 
-    if ( url === '/cancion' && method === 'POST' ) {
-      songController.postSong(req, res);
+    if ( url === '/canciones' &&  method === 'GET' ) {
+      songController.getSongs(req, res);
     };
 
-    if ( url === '/canciones' &&  method === 'GET' ) {
-      songController.getSong(req, res);
+    if ( url === '/cancion' && method === 'POST' ) {
+      songController.postSong(req, res);
     };
 
     if ( url === '/cancion' &&  method === 'PUT' ) {

@@ -3,20 +3,22 @@ const URL = require('url');
 
 module.exports = {
 
-  getSongs: ( req, res ) => {
+  getSongs: (req, res) => {
     pool.connect( async (err_connect, client, release) => {
       if ( err_connect ) {
         console.log(err_connect);
       };
 
       const SQLQuery = {
-        text: 'select * from repertorio returning *;',
+        text: 'select * from repertorio;',
         values: [],
       };
 
+      //console.log('Entrando en getSongs');
       try {
         const response = await client.query(SQLQuery);
-        res.end(JSON.stringify(response));
+        //console.log(response);
+        res.end(JSON.stringify(response.rows));
       } catch ( err ) {
         console.log(err.message);
       } finally {
@@ -27,29 +29,36 @@ module.exports = {
 
   postSong: ( req, res ) => {
     pool.connect( async (err_connect, client, release) => {
+
+      console.log('Entrando en postSong');
+
       if ( err_connect ) {
         console.log(err_connect);
       };
 
-      let body = "";
-      req.on('data', (data) => {
+      let body;
+      req.on("data", async (data) => { // req.on 
         body = JSON.parse(data);
-      });
+        //console.log(typeof(data))
+        //console.log('Hola probando desde req.on data: ' + data)
+        //console.log('Hola probando desde req.on body: ' + data)
 
-      const SQLQuery = {
-        text: 'insert into repertorio (cancion, artista, tono) values ($1, $2, $3) returning *',
-        values: [ body.cancion, body.artista, body.tono ],
-      };
+        const SQLQuery = {
+          text: 'insert into repertorio (cancion, artista, tono) values ($1, $2, $3) returning *',
+          values: [ body.cancion, body.artista, body.tono ],
+        };
 
-      try {
-        const response = await client.query(SQLQuery);
-        res.end(JSON.stringify(response));
-        console.log('Nuevo concion agregada: ' + JSON.stringify(response.rows[0]));
-      } catch ( err ) {
-        console.log(err.message);
-      } finally {
-        release();
-      };
+        try {
+          const response = await client.query(SQLQuery);
+          //console.log(response);
+          res.end(JSON.stringify(response));
+          console.log('Nuevo canción agregada: ' + JSON.stringify(response.rows[0]));
+        } catch ( err ) {
+          console.log(err.message);
+        } finally {
+          release();
+        };
+      }); // req.on end
     });
   },
 
