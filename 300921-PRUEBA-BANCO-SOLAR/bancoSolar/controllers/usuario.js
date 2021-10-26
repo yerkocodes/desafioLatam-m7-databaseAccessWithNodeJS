@@ -55,6 +55,7 @@ module.exports = {
           const response = await client.query(SQLQuery);
           res.end(JSON.stringify(response));
           console.log('Nuevo usuario registrado: ' + JSON.stringify(response.rows[0]));
+          res.statusCode = 200;
         } catch ( err ) {
           console.log(err.message);
         } finally {
