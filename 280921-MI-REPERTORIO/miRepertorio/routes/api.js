@@ -16,7 +16,7 @@ module.exports = {
       songController.putSong(req, res);
     };
 
-    if ( url === '/cancion' &&  method === 'DELETE' ) {
+    if ( url.startsWith('/cancion') &&  method === 'DELETE' ) {
       songController.deleteSong(req, res);
     };
 

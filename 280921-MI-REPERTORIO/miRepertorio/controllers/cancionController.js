@@ -66,7 +66,7 @@ module.exports = {
   putSong: ( req, res ) => { // Se debio agregar el 'id' a la funcion editarCancion() del frontEnd
     pool.connect( async (err_connect, client, release) => {
 
-      console.log('Entrando en putSong');
+      //console.log('Entrando en putSong');
 
       if ( err_connect ) {
         console.log(err_connect);
@@ -79,11 +79,11 @@ module.exports = {
       let body = "";
       req.on('data', async (data) => { // req.on
         body = JSON.parse(data);
-        console.log('Mostrando data desde req.on ' + data);
+        //console.log('Mostrando data desde req.on ' + data);
 
-      console.log('---------------')
-      console.log(body)
-      console.log('---------------')
+      //console.log('---------------')
+      //console.log(body)
+      //console.log('---------------')
 
       const SQLQuery = {
         //rowMode: 'array',
@@ -93,9 +93,9 @@ module.exports = {
 
       try {
         const response = await client.query(SQLQuery);
-        console.log(response.rows)
+        //console.log(response.rows)
         res.end(JSON.stringify(response));
-        console.log('Canción modificada con éxito: ' + JSON.stringify(response.rows));
+        //console.log('Canción modificada con éxito: ' + JSON.stringify(response.rows));
       } catch ( err ) {
         console.log(err.message);
       } finally {
@@ -119,9 +119,10 @@ module.exports = {
       };
 
       try {
+        //console.log('ENTRANDO EN DELETESONG');
         const response = await client.query(SQLQuery);
         res.end(JSON.stringify(response));
-        console.log('Cancion eliminada con éxito: ' + JSON.stringify(resonse.rows));
+        //console.log('Cancion eliminada con éxito: ' + JSON.stringify(response.rows));
       } catch ( err ) {
         console.log(err.message);
       } finally {
